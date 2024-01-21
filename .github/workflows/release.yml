@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    branches: ['main']
+    paths-ignore:
+      - '.devcontainer/**'
+      - '.github/**'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    -  uses: actions/setup-node@v2
+       with:
+        node-version: 'lts/*'
+
+    - name: Create the next release.
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        npm install -g semantic-release@18.x \
+          @semantic-release/commit-analyzer@9.x \
+          @semantic-release/github@8.x \
+          @semantic-release/release-notes-generator@10.x
+          
+        npx semantic-release
