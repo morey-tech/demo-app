@@ -48,7 +48,7 @@ jobs:
         with:
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/${{ steps.repolower.outputs.lowercase }}:${{ github.sha }}, ghcr.io/${{ steps.repolower.outputs.lowercase }}:${{ steps.set-tag.outputs.docker_tag }}, ghcr.io/${{ steps.repolower.outputs.lowercase }}:latest
+          tags: ghcr.io/${{ steps.repolower.outputs.lowercase }}:${{ github.sha }}, ghcr.io/${{ steps.repolower.outputs.lowercase }}:${{ steps.set-tag.outputs.tag }}, ghcr.io/${{ steps.repolower.outputs.lowercase }}:latest
 
   # deploy-dev:
   #   runs-on: ubuntu-latest
