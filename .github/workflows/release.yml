@@ -4,6 +4,7 @@ on:
     paths-ignore:
       - '.devcontainer/**'
       - '.github/**'
+  pull_request:
 
 jobs:
   release:
