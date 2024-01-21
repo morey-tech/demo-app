@@ -6,7 +6,6 @@ on:
     paths-ignore:
       - '.devcontainer/**'
       - '.github/**'
-  pull_request:
 
 jobs:
   release:
@@ -27,4 +26,4 @@ jobs:
           @semantic-release/github@8.x \
           @semantic-release/release-notes-generator@10.x
           
-        npx semantic-release --dry-run
+        npx semantic-release
