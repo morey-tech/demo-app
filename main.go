@@ -13,7 +13,7 @@ func main() {
 	myFigure.Print()
 
 	if secret := os.Getenv("SECRET"); secret != "" {
-		mySecretFigure := figure.NewColorFigure(fmt.Sprintf("Secret value is: %s", secret), "larry3d", "red", true)
+		mySecretFigure := figure.NewColorFigure(fmt.Sprintf("Secret value is: %s", secret), "larry3d", "blue", true)
 		mySecretFigure.Print()
 	}
 	
