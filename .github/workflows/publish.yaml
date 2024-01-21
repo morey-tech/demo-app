@@ -2,8 +2,7 @@ name: Publish
 
 on:
   push:
-    branches:
-      - main
+    tags: ['[0-9]+.[0-9]+.[0-9]+']
 
 jobs:
   build-and-push-image:
@@ -38,13 +37,18 @@ jobs:
         uses: ASzc/change-string-case-action@v5
         with:
           string: ${{ github.repository }}
+
+      - name: Get tag from ref
+        id: set-tag
+        run: |
+          echo "::set-output name=tag::${GITHUB_REF/refs\/tags\//}"
       
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/${{ steps.repolower.outputs.lowercase }}:${{ github.sha }}, ghcr.io/${{ steps.repolower.outputs.lowercase }}:latest
+          tags: ghcr.io/${{ steps.repolower.outputs.lowercase }}:${{ github.sha }}, ghcr.io/${{ steps.repolower.outputs.lowercase }}:${{ steps.set-tag.outputs.docker_tag }}, ghcr.io/${{ steps.repolower.outputs.lowercase }}:latest
 
   # deploy-dev:
   #   runs-on: ubuntu-latest
